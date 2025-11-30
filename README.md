@@ -1,22 +1,19 @@
-# Create a Coding Agent
+# Create a Coding Agent with Gemini
 
-This workshop is a part of the
-[AI Bootcamp: From RAG to Agents](https://maven.com/alexey-grigorev/from-rag-to-agents) course.
-
-- Video: https://www.youtube.com/watch?v=Sue_mn0JCsY
-- TODO app made with Z-ai: https://www.loom.com/share/b4c47e3491504375b9244ea69fe095df
-
-In this workshop, we create our own coding Agent. This agent
+This is a project that creates our own coding Agent using Google Gemini. This agent
 will use the provided Django template and create an application
 using it.
 
-In the ["Vibe Coding Introduction" workshop](../vibe-coding/), we referred
-to such tools as "Project Bootstrapers". Now we're building one of them
+Project Bootstrappers are tools that help in coding. Now we're building one of them
 ourselves.
 
 <img src="./images/chat.png">
 
 <img src="./images/todo.png">
+
+**Author:** Rajdeep Kushwaha  
+**GitHub:** [RajdeepKushwaha5](https://github.com/RajdeepKushwaha5)  
+**Repository:** [coding-agent-using-django](https://github.com/RajdeepKushwaha5/coding-agent-using-django)
 
 
 ## Prerequisites
@@ -24,19 +21,19 @@ ourselves.
 - Python
 - Make (optional)
 - Google Gemini API key
-- Github (optional)
+- GitHub (optional)
 
 
 ## Environment
 
-* For this workshop, all you need is Python with Jupyter.
-* I use GitHub Codespaces to run it (see [here](https://www.loom.com/share/80c17fbadc9442d3a4829af56514a194)) but you can use whatever environment you like.
+* For this project, all you need is Python with Jupyter.
+* You can use GitHub Codespaces to run it (see [here](https://www.loom.com/share/80c17fbadc9442d3a4829af56514a194)) or any other environment you like.
 * Also, you need a [Google AI account](https://ai.google.dev/) to access Gemini API.
 
-### Setting up Github Codespaces
+### Setting up GitHub Codespaces
 
-Github Codespaces is the recommended environment for this 
-workshop.
+GitHub Codespaces is the recommended environment for this 
+project.
 
 But you can use any other environment with Jupyter Notebook.
 If you want to do it on your laptop, it's perfectly fine.
@@ -89,7 +86,7 @@ response = model.generate_content("Tell me a joke about Alexey.")
 print(response.text)
 ```
 
-With function caling:
+With function calling:
 
 ```python
 import random
@@ -129,18 +126,15 @@ system_prompt = "You can make funny and original jokes. Find out the user's name
 
 user_prompt = "Tell me a joke about Alexey."
 
-chat_messages = [
-    {"role": "developer", "content": system_prompt},
-    {"role": "user", "content": user_prompt}
-]
+import google.generativeai as genai
 
-response = openai_client.responses.create(
-    model='gpt-4o-mini',
-    input=chat_messages,
-    tools=[make_joke_description]
-)
+genai.configure(api_key='YOUR_API_KEY')
 
-response.output
+model = genai.GenerativeModel('gemini-2.0-flash', system_instruction=system_prompt)
+
+response = model.generate_content(user_prompt)
+
+print(response.text)
 ```
 
 For orchestrating, we can use [`toyaikit`](https://github.com/alexeygrigorev/toyaikit).
@@ -308,7 +302,7 @@ We can update `base.html` with [this code](django_template/templates/base.html).
 ## Agent
 
 Now let's create the code for our Agent. We'll do it inside a jupyter notebook.
-See [agent.ipybn](agent.ipynb) for the final result.
+See [agent.ipynb](agent.ipynb) for the final result.
 
 First, we need a function to copy the template into a separate folder 
 
@@ -768,7 +762,7 @@ runner.run()
 Here we use 
 
 - `OpenAIChatCompletionsRunner` instead of `OpenAIResponsesRunner`
-- `OpenAIChatCompletionsClient` insead of `OpenAIClient`
+- `OpenAIChatCompletionsClient` instead of `OpenAIClient`
 
 
 
