@@ -772,11 +772,61 @@ Here we use
 
 
 
-## Final words 
 
+## Frequently Asked Questions (FAQs)
 
-That's it! 
+### What is this project?
 
-If you're interested in learning more about it, check out my new course:
+This project is a coding agent workshop that demonstrates how to build an AI-powered coding assistant using pydantic-ai, Google Gemini, and Django. The agent can modify and generate Django applications based on user prompts.
 
-https://maven.com/alexey-grigorev/from-rag-to-agents
+### How do I set up the environment?
+
+1. Ensure you have Python installed.
+2. Install required libraries: `pip install jupyter django uv google-generativeai toyaikit pydantic-ai python-dotenv`.
+3. Obtain a Google Gemini API key from [Google AI Studio](https://ai.google.dev/).
+4. Create a `.env` file with `GEMINI_API_KEY=your_key_here`.
+5. Run the Jupyter notebook `pydantic-ai-runner.ipynb` to start the agent.
+
+### Can I use GitHub Codespaces?
+
+Yes, GitHub Codespaces is recommended. Add your `GOOGLE_API_KEY` as a repository secret under Settings > Secrets and Variables > Codespaces.
+
+### What if I get API errors?
+
+- Ensure your API key is correct and has sufficient quota.
+- Check the model name; use 'gemini-2.0-flash' for stability.
+- Verify your `.env` file is in the project root and loaded properly.
+
+### Can I use other AI models instead of Gemini?
+
+The project is configured for Gemini, but you can adapt it for other models supported by pydantic-ai, such as OpenAI. Modify the model initialization in the notebook accordingly.
+
+### What is the Django template for?
+
+The `todo-tutorial/` directory contains a basic Django project template. The agent uses this to create and modify todo applications, demonstrating practical coding tasks.
+
+### How does the agent work?
+
+The agent uses pydantic-ai for orchestration, Gemini for language understanding, and custom tools (in `tools.py`) for file operations and command execution. It interprets user prompts to modify the Django project.
+
+### What are the prerequisites?
+
+- Python
+- Google Gemini API key
+- Basic knowledge of Django and Jupyter notebooks
+- Optional: Make, GitHub for codespaces
+
+### How do I run the agent?
+
+Open `pydantic-ai-runner.ipynb` in Jupyter, ensure your environment is set up, and run the cells. The agent will prompt for instructions to modify the Django app.
+
+### Can I contribute or modify the project?
+
+Yes, this is an open-source project. Feel free to fork the repository, make changes, and submit pull requests. Ensure to follow the existing code structure and add tests if possible.
+
+### Where can I learn more?
+
+- Check the [AI Bootcamp course](https://maven.com/alexey-grigorev/from-rag-to-agents) for more workshops.
+- Visit the [pydantic-ai documentation](https://ai.pydantic.dev/) for agent details.
+- Explore [Google AI documentation](https://ai.google.dev/) for Gemini API info.
+
